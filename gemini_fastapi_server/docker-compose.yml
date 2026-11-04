@@ -1,0 +1,19 @@
+services:
+  gemini-fastapi:
+    image: ghcr.io/nativu5/gemini-fastapi:latest
+    ports:
+      - "8000:8000"
+    volumes:
+      # - ./config:/app/config      # Uncomment to use a custom config file
+      # - ./certs:/app/certs        # Uncomment to enable HTTPS with your certs
+      - ./data:/app/data
+      - ./cache:/app/cache
+    environment:
+      - CONFIG_SERVER__HOST=0.0.0.0
+      - CONFIG_SERVER__PORT=8000
+      - CONFIG_SERVER__API_KEY=${API_KEY}
+      - CONFIG_GEMINI__CLIENTS__0__ID=client-a
+      - CONFIG_GEMINI__CLIENTS__0__SECURE_1PSID=${SECURE_1PSID}
+      - CONFIG_GEMINI__CLIENTS__0__SECURE_1PSIDTS=${SECURE_1PSIDTS}
+      - GEMINI_COOKIE_PATH=/app/cache # must match the cache volume mount above
+    restart: on-failure:3 # Avoid retrying too many times

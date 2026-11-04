@@ -1,0 +1,26 @@
+# === VÍ DỤ: cấu hình NHIỀU tài khoản Gemini để server tự xoay vòng (round-robin) ===
+# Chỉ cần thêm nhiều mục trong "gemini.clients" - mỗi mục là 1 tài khoản Google
+# đăng nhập gemini.google.com riêng (nên dùng trình duyệt ẩn danh khác nhau để
+# lấy cookie của từng tài khoản, tránh cookie đè lên nhau).
+#
+# Server sẽ TỰ ĐỘNG xoay vòng qua các client này cho mỗi request /v1/chat/completions
+# khi không có client_id cụ thể - tức translate.py của bạn KHÔNG cần sửa gì, cứ gọi
+# như bình thường là được xoay vòng tự động.
+
+gemini:
+  clients:
+    - id: "account-1"
+      secure_1psid: "g.a000DwnWWYaK50SB4DsKL97ggvLUanH7UvovP3_qJPpK58idx_jXJ7rgBPvnh2hw4UDLPZZ0XgACgYKAWwSARASFQHGX2MiSjTDUGe2O51WqcDdLZ-CvRoVAUF8yKox48HNTO9FbDm2eaMC0Riz0076"
+      secure_1psidts: "sidts-CjcBnJZzauNj5gP8oM2x6Unv7ideaViSNdR4nlTruzmNZ1lgyv0NcU3cTUwLY2nBi35D_re6Wh-DEAA"
+      proxy: null              # hoặc "http://user:pass@ip:port" nếu muốn IP riêng
+
+  timeout: 600
+  watchdog_timeout: 300
+  auto_refresh: true
+  refresh_interval: 600
+  verbose: false
+  max_chars_per_request: 1000000
+  oversized_context_strategy: "compaction"
+  chat_mode: "normal"
+  model_strategy: "append"
+  models: []

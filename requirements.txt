@@ -1,0 +1,131 @@
+# ============================================================
+#  REUP STUDIO - danh sách thư viện cần cài để chạy app
+#  Python: 3.12.x  (Windows 64-bit)
+#
+#  Sinh tự động bằng tools/scan_requirements.py (quét import của
+#  main.py + core/ + douyin_batch/ + gemini_fastapi_server/).
+#  Phiên bản đã ghim (==) theo đúng môi trường đã chạy thử thành công.
+#
+#  Cài đặt:
+#      pip install -r requirements.txt
+#  (thêm --index-url https://pypi.org/simple nếu mạng chậm)
+# ============================================================
+
+# --- Giao diện desktop ---
+customtkinter==6.0.0
+tkinterdnd2==0.6.3
+ttkbootstrap==2.0.1
+darkdetect==0.8.0
+pillow==12.3.0
+
+# --- Video / ảnh / âm thanh ---
+av==18.0.0
+imageio==2.37.4
+imageio-ffmpeg==0.6.0
+moviepy==1.0.3
+numpy==2.5.1
+opencv-python==4.10.0.84
+pydub==0.25.1
+sounddevice==0.5.6
+soundfile==0.14.0
+
+# --- Nhận dạng giọng nói / phụ đề ---
+faster-whisper==1.2.1
+ctranslate2==4.8.1
+tokenizers==0.23.1
+huggingface-hub==1.24.0
+hf-xet==1.5.2
+onnxruntime==1.27.0
+flatbuffers==25.12.19
+protobuf==7.35.1
+
+# --- Đọc giọng nói (TTS) ---
+edge-tts==7.2.8
+pyttsx3==2.99
+
+# --- Dịch thuật ---
+requests==2.34.2
+PyYAML==6.0.3
+
+# --- Gemini / Google ---
+gemini-webapi==2.1.0
+google-genai==2.19.0
+google-auth==2.56.2
+google-auth-oauthlib==1.4.0
+google-auth-httplib2==0.4.4
+google-api-python-client==2.199.0
+gspread==6.2.1
+
+# --- Gemini FastAPI server (đi kèm app) ---
+fastapi==0.141.1
+uvicorn==0.52.3
+starlette==1.6.0
+sse-starlette==3.4.8
+orjson==3.11.9
+python-multipart==0.0.32
+pydantic==2.12.5
+pydantic-settings==2.15.0
+pydantic_core==2.41.5
+typing_extensions==4.16.0
+typing-inspection==0.4.4
+annotated-types==0.8.0
+python-dotenv==1.2.2
+lmdb==2.3.0
+loguru==0.7.3
+
+# --- Mô-đun tải Douyin (douyin_batch) ---
+aiohttp==3.14.3
+aiofiles==25.1.0
+aiosqlite==0.22.1
+gmssl==3.2.2
+httpx==0.28.1
+httpcore==1.0.9
+h11==0.16.0
+rich==13.9.4
+certifi==2026.7.22
+charset-normalizer==3.4.9
+idna==3.18
+sniffio==1.3.1
+
+# --- Tải video từ nhiều nền tảng ---
+yt-dlp==2026.8.19
+yt-dlp-ejs==0.8.0
+curl_cffi==0.16.1
+fake-useragent==2.2.0
+beautifulsoup4==4.15.0
+soupsieve==2.9.2
+
+# --- Đăng video YouTube / TikTok ---
+selenium==4.47.0
+undetected-chromedriver==3.5.5
+websocket-client==1.9.0
+websockets==16.1.1
+requests-oauthlib==2.0.0
+oauthlib==3.3.1
+cryptography==49.0.0
+
+# --- Trình duyệt tự động (dự phòng khi Douyin chặn API) ---
+playwright==1.61.0
+
+# --- Cơ sở dữ liệu / SQL ---
+SQLAlchemy==2.0.52
+sqlmodel==0.0.39
+greenlet==3.5.4
+
+# --- Tiện ích chung ---
+tqdm==4.69.0
+tenacity==9.1.4
+packaging==26.2
+filelock==3.32.0
+fsspec==2026.6.0
+python-dateutil==2.9.0.post0
+six==1.17.0
+click==8.4.2
+colorama==0.4.6
+prompt_toolkit==3.0.53
+proglog==0.1.12
+wcwidth==0.8.2
+win32_setctime==1.2.0
+PySocks==1.7.1
+setuptools==83.0.0
+wheel==0.48.0

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Reup Studio - Logo chính thức (bản vector)
+  Ngôn ngữ: file này chỉ chứa chú thích kỹ thuật bằng tiếng Việt.
+
+  Ý tưởng: ô vuông bo góc nền chuyển màu tím (đồng bộ màu nhấn của giao diện),
+  bên trong là mũi tên tải xuống (trắng) - lỗ cắt hình tam giác "play" trong thân
+  mũi tên gợi ý tính năng video, vòng tròn mở toả gợi ý quy trình dịch/lặp lại
+  (Reup), chấm xanh lá làm điểm nhấn.
+-->
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <!-- Nền chuyển màu tím: dùng userSpaceOnUse để phần "cắt" mũi tên khớp tuyệt đối với nền -->
+    <linearGradient id="reupGrad" gradientUnits="userSpaceOnUse" x1="12" y1="12" x2="500" y2="500">
+      <stop offset="0" stop-color="#A18CFF"/>
+      <stop offset="0.48" stop-color="#6C5CE7"/>
+      <stop offset="1" stop-color="#4133C0"/>
+    </linearGradient>
+
+    <!-- Ánh sáng mềm ở góc trên bên trái -->
+    <radialGradient id="reupGloss" gradientUnits="userSpaceOnUse" cx="120" cy="80" r="330">
+      <stop offset="0" stop-color="#FFFFFF" stop-opacity="0.26"/>
+      <stop offset="0.65" stop-color="#FFFFFF" stop-opacity="0.06"/>
+      <stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Lớp sáng của chấm xanh lá -->
+    <radialGradient id="reupDot" gradientUnits="userSpaceOnUse" cx="366" cy="92" r="26">
+      <stop offset="0" stop-color="#7FF0DC"/>
+      <stop offset="1" stop-color="#2FBF8F"/>
+    </radialGradient>
+
+    <!-- Bo góc dùng chung cho lớp bo trong -->
+    <clipPath id="reupClip">
+      <rect x="12" y="12" width="488" height="488" rx="118"/>
+    </clipPath>
+  </defs>
+
+  <!-- Ô nền -->
+  <rect x="12" y="12" width="488" height="488" rx="118" fill="url(#reupGrad)"/>
+
+  <!-- Lớp ánh sáng (cắt theo bo góc nền để không tạo vệt cứng) -->
+  <g clip-path="url(#reupClip)">
+    <rect x="12" y="12" width="488" height="488" fill="url(#reupGloss)"/>
+  </g>
+
+  <!-- Viền trong mảnh cho cảm giác "ố kính" -->
+  <rect x="15.5" y="15.5" width="481" height="481" rx="115" fill="none"
+        stroke="#FFFFFF" stroke-opacity="0.14" stroke-width="3"/>
+
+  <!-- Vòng tròn mở toả (gợi ý dịch / lặp lại) -->
+  <circle cx="256" cy="256" r="198" fill="none" stroke="#FFFFFF" stroke-opacity="0.16"
+          stroke-width="13" stroke-linecap="round" stroke-dasharray="1150 94"
+          transform="rotate(150 256 256)"/>
+
+  <!-- Chấm xanh lá đang chạy trên vòng tròn -->
+  <circle cx="366" cy="92" r="15" fill="url(#reupDot)"/>
+
+  <!-- Mũi tên tải xuống: thân + đầu + đế -->
+  <rect x="240" y="146" width="32" height="122" rx="16" fill="#FFFFFF"/>
+  <polygon points="196,236 316,236 256,322" fill="#FFFFFF" stroke="#FFFFFF"
+           stroke-width="30" stroke-linejoin="round"/>
+  <rect x="146" y="352" width="220" height="28" rx="14" fill="#FFFFFF"/>
+
+  <!-- Lỗ cắt hình tam giác "play" trong thân mũi tên (gợi ý video) -->
+  <polygon points="247,181 247,231 268,206" fill="url(#reupGrad)"/>
+</svg>

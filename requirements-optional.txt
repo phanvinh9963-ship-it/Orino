@@ -1,0 +1,22 @@
+# ============================================================
+#  REUP STUDIO - thư viện TÙY CHỌN (dung lượng lớn)
+#
+#  Các tính năng sau sẽ báo lỗi tiếng Việt nếu chưa cài những gói này,
+#  nhưng app vẫn chạy bình thường và các tính năng khác vẫn dùng được:
+#
+#   torch            -> nhân bản giọng nói (Voice Clone), TTS OmniVoice
+#   mediapipe        -> tự nhận diện người nói theo khuôn mặt
+#   librosa          -> tự nhận diện giọng nam/nữ
+#   argostranslate   -> dịch thuật offline không cần mạng
+#   vieneu-tts       -> giọng đọc tiếng Việt chất lượng cao
+#   omnivoice       -> TTS OmniVoice đa giọng
+#   vietnormalizer   -> chuẩn hóa chính tả tiếng Việt cho voice clone
+#
+#  Cài đặt:  pip install -r requirements-optional.txt
+# ============================================================
+
+torch==2.14.1
+mediapipe==1.1.1
+librosa==1.0.0
+argostranslate==1.11.0
+vietnormalizer==0.2.3

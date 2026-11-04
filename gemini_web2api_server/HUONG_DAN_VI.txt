@@ -1,0 +1,64 @@
+HƯỚNG DẪN DÙNG 1 SERVER gemini-web2api DUY NHẤT CHO NHIỀU DỰ ÁN
+==================================================================
+
+VÌ SAO CÓ FILE NÀY
+-------------------
+Bạn đang có nhiều công cụ (Reup Studio dịch video, auto_rewrite_products.py
+viết SEO, và 1 dự án khác) đều cần gọi Gemini qua gemini-web2api. Bản trong
+gói này gộp lấy phiên bản MỚI HƠN (có luân phiên nhiều tài khoản khi bị 429,
+đọc header Retry-After, sửa lỗi format cookie) để dùng CHUNG 1 SERVER DUY
+NHẤT, tránh chạy trùng/đụng cổng.
+
+BƯỚC 1 - THAY THẾ SERVER CŨ
+----------------------------
+1. Đóng TẤT CẢ cửa sổ terminal đang chạy bất kỳ bản gemini_web2api_server
+   nào (kể cả bản cũ trong reup-studio, kể cả bản trong dự án kia).
+2. Xoá thư mục `gemini_web2api_server` cũ trong project reup-studio (thư mục
+   nằm cạnh main.py).
+3. Giải nén gói này, đặt thư mục `gemini_web2api_server` (kèm trong gói)
+   vào ĐÚNG VỊ TRÍ cũ (cạnh main.py của reup-studio).
+4. Cài lại dependency (chỉ cần làm 1 lần):
+     cd gemini_web2api_server
+     pip install -r requirements.txt
+
+BƯỚC 2 - CHẠY SERVER (CHỈ 1 CỬA SỔ DUY NHẤT, LUÔN GIỮ MỞ)
+------------------------------------------------------------
+Bấm đúp `START_SERVER.bat` trong thư mục `gemini_web2api_server` này (hoặc
+chạy tay: `python -m gemini_web2api --config config.json`).
+Server chạy ở http://127.0.0.1:8000 — CẢ 3 công cụ của bạn (Reup Studio,
+auto_rewrite_products.py, và dự án kia) đều trỏ vào ĐÚNG địa chỉ này, không
+cần đổi gì thêm ở phía code Python của từng công cụ.
+
+KHÔNG mở thêm cửa sổ thứ 2 chạy server nữa — chỉ 1 server phục vụ tất cả.
+
+BƯỚC 3 (TÙY CHỌN) - BẬT LUÂN PHIÊN NHIỀU TÀI KHOẢN ĐỂ GIẢM 429
+------------------------------------------------------------------
+Nếu bạn có sẵn nhiều tài khoản Google (không bắt buộc, anonymous vẫn chạy
+được), sửa `config.json`:
+
+  "cookie_files": ["cookie_1.txt", "cookie_2.txt", "cookie_3.txt"]
+
+Mỗi file cookie_N.txt lấy cookie của 1 tài khoản Google KHÁC NHAU, theo
+đúng cách lấy cookie đã hướng dẫn trước đó (DevTools -> Application ->
+Cookies -> gemini.google.com -> copy __Secure-1PSID và các cookie liên
+quan). Khi 1 tài khoản dính 429, server tự chuyển sang tài khoản kế tiếp
+trong danh sách, không cần bạn can thiệp tay.
+
+Nếu KHÔNG có nhiều tài khoản, cứ để "cookie_files": [] — chạy anonymous
+bình thường như hiện tại, không bắt buộc phải có cookie.
+
+BƯỚC 4 - NẾU VẪN GẶP LỖI "405 Method Not Allowed" HÀNG LOẠT
+------------------------------------------------------------
+Đây là dấu hiệu Google đã đổi phiên bản backend nội bộ, cần cập nhật
+"gemini_bl" trong config.json:
+1. Mở trình duyệt, vào https://gemini.google.com, đăng nhập (hoặc không
+   cần đăng nhập cũng được).
+2. Bấm chuột phải -> "View Page Source" (Xem nguồn trang).
+3. Ctrl+F tìm "boq_assistant-bard-web-server" - copy đúng chuỗi tìm được
+   (dạng boq_assistant-bard-web-server_YYYYMMDD.xx_p0).
+4. Dán vào config.json:
+     "gemini_bl": "<chuỗi vừa copy>"
+5. Khởi động lại server.
+
+Lỗi này không phải do bug trong code - đây là bản chất của việc dùng
+API không chính thức, giá trị này Google có thể đổi bất cứ lúc nào.

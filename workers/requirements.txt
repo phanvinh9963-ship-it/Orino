@@ -1,0 +1,40 @@
+# Reup Studio — Python worker dependencies
+# Install with: pip install -r workers/requirements.txt
+
+# Voice cloning (OmniVoice — replaces XTTS-v2)
+# IMPORTANT: pin torch — an unpinned torch>=2.x pulled 2.12.1+cpu which crashes
+# (native access violation in torch.storage during OmniVoice model load on Windows).
+# GPU:  pip install torch==2.8.0+cu128 torchaudio==2.8.0+cu128 --extra-index-url https://download.pytorch.org/whl/cu128
+# CPU:  pip install torch==2.8.0 torchaudio==2.8.0 --index-url https://download.pytorch.org/whl/cpu
+omnivoice>=0.1.0
+soundfile>=0.12.1
+
+# STT — faster-whisper (segment timestamps đầy đủ, cần cho subtitle generation)
+faster-whisper>=1.0.3
+
+# TTS built-in handled by sherpa-onnx (Rust native — no Python needed)
+# TTS cloned voice handled by OmniVoice above
+
+# TTS online (Microsoft Edge) — pure-python, không torch; 7.x có xử lý token DRM
+edge-tts>=7.0,<8
+
+# VAD (shares torch with OmniVoice — pinned to a stable build, see note above)
+torch==2.8.0
+torchaudio==2.8.0
+
+# OCR
+paddlepaddle>=2.6.0
+paddleocr>=2.8.0
+opencv-python-headless>=4.9.0
+pyclipper>=1.3.0
+
+# Translation (local NLLB model) — OmniVoice requires transformers>=5.3.0
+transformers>=5.3.0,<6
+sentencepiece>=0.2.0
+
+# Sentence segmentation (tách câu đa ngôn ngữ cho TTS auto-split) — pure-python, nhẹ
+pysbd>=0.3.4
+
+# Translation (cloud, optional)
+# deepl>=1.17.0
+# google-cloud-translate>=3.15.0

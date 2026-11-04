@@ -1,0 +1,85 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+venv_build/
+venv_clean/
+
+# Secrets / credentials
+.env
+*.env
+*_token.json
+youtube_accounts.json
+cookies.txt
+cookie_*.txt
+*_cookie.txt
+.cookies.json
+ThucMinh_token.json
+
+# Runtime data
+tiktok_uploaded_log.json
+orino_settings.json
+.vieneu_preset_cache.json
+
+# Build
+build/
+dist/
+*.spec
+
+# Logs
+*.log
+
+# Local backups
+backup/
+
+# FFmpeg / bundled runtime
+ffmpeg/
+et
+
+# Python bundled runtime (PyInstaller _internal, etc.)
+# NOTE: core/ la source code chinh cua Reup Studio (pipeline, editor, TTS, translate...)
+# va DUOC TRACK, KHONG duoc bo qua. Dòng core/ cu cua lan truoc da bi xoa de khoi
+# bo qua nhầm mã nguồn.
+_internal/
+
+# IDE
+.vscode/
+.idea/
+
+# Python virtual environments
+venv/
+venv_build/
+.venv/
+
+# AI model cache
+model_cache/
+
+# Generated output
+orino_output/
+reup_output/
+logs/
+
+# Temporary processing files
+*.mp4
+*.mp3
+*.wav
+*.srt
+
+# Node.js
+node_modules/
+
+# Explicit Python bytecode
+*.pyc
+
+# Third-party / vendored projects bundled with this repo (not part of Reup Studio source)
+CLIProxyAPI-main/
+
+# Browser profile data (chrome profile, caches, storage - can be huge)
+TiktokAuto/chrome_profile_data/
+
+# OpenMontage (integrated as isolated directory - AGPL-3.0, kept separate)
+OpenMontage/

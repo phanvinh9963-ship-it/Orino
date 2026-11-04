@@ -1,0 +1,6 @@
+# Thư viện cho Editor (tab ✂ Editor). Phần lớn đã có trong requirements_full.txt.
+sounddevice          # BẮT BUỘC để có tiếng khi xem trước: phát qua WASAPI, tránh lỗi "wave device in use"
+numpy
+pillow
+av
+imageio-ffmpeg

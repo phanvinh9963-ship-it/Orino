@@ -1,0 +1,28 @@
+# ============================================================
+#  FILE COOKIE DOUYIN - FILE MẪU (để trống)
+#  Reup Studio đọc cookie từ đúng file này:
+#      <thư mục app>\cookies\douyin_cookies.txt
+#  Bạn chỉ cần dán nội dung cookie thật vào file
+#  "douyin_cookies.txt" cùng thư mục, không cần sửa gì trong app.
+#
+#  CÁCH LẤY COOKIE (3 bước):
+#    1. Mở trình duyệt Chrome/Edge, đăng nhập tài khoản Douyin của bạn.
+#    2. Cài extension "Get cookies.txt LOCALLY" (miễn phí trên Chrome Web Store).
+#    3. Bấm vào biểu tượng extension ở góc trên bên phải -> chọn
+#       "Export cookies" -> chọn định dạng "Netscape" -> lưu file.
+#    4. Đổi tên file vừa lưu thành "douyin_cookies.txt" rồi chép vào
+#       thư mục "cookies" cạnh file .exe của Reup Studio.
+#
+#  LƯU Ý:
+#    - Cookie có thời hạn (vài ngày). Hết hạn thì tải trang cá nhân sẽ báo lỗi,
+#      chỉ cần lấy cookie mới và thay lại file là được.
+#    - Video công khai thường tải được KHÔNG cần cookie; cookie chỉ cần khi
+#      tải trang cá nhân hoặc nội dung bị giới hạn.
+#    - File này chứa thông tin đăng nhập của bạn - đỪNG chia sẻ cho ai khác.
+#
+#  Định dạng file (giống hệt file do yt-dlp xuất ra), mỗi dòng một cookie:
+#      domain<TAB>include_subdomains<TAB>path<TAB>secure<TAB>expires<TAB>name<TAB>value
+#  Ví dụ (dòng mẫu, KHÔNG dùng được - cần cookie thật của bạn):
+#      # Netscape HTTP Cookie File
+#      .douyin.com	TRUE	/	TRUE	1792676957	ttwid	GIÁ_TRỊ_COOKIE_CỦA_BẠN
+# ============================================================
