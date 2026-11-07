@@ -1,23 +1,29 @@
-# MONTAGE_USAGE.md - Huong dan dung OpenMontage voi Reup Studio
+# Hướng dẫn dùng OpenMontage kèm Reup Studio (Phương án A)
 
-## Luong su dung
-1. Chay `F:\Orino\run_montage.bat` de kich hoat `.venv` va mo `opencode` tai thu muc OpenMontage.
-2. Dat video goc + file SRT (neu co) vao `OpenMontage\exchange\input\`.
-3. Yeu cau agent xu ly (vi du: "Dung video A thanh short 9:16, them phu de, xuat ra exchange\output").
-4. Ket qua (video hau ky) xuat ra `OpenMontage\exchange\output\`.
-5. Reup Studio tiep tuc tu file output do (khong import ma OpenMontage vao core).
+## Mục đích
+Dùng OpenMontage làm công cụ hậu kỳ video (AI dựng video) cho Reup Studio, **không sửa mã nguồn** của Reup Studio, **không import mã OpenMontage** vào `core/` (giấy phép AGPL-3.0). Hai bên trao đổi chỉ qua thư mục `exchange\`.
 
-## Vi du cau lenh cho agent (khong chay thu)
-- "Doc OpenMontage\AGENTS.md va AGENTS.local.md, sau do xu ly file trong exchange\input\thu_nghiem.mp4 theo pipeline short-form."
-- "Kiem tra provider_menu_summary() truoc khi bat dau."
-- "Xuat ket qua vao exchange\output\final.mp4."
+## Thư mục trao đổi
+- `F:\Orino\OpenMontage\exchange\input\` — đặt video + SRT từ Reup Studio vào đây.
+- `F:\Orino\OpenMontage\exchange\output\` — lấy video hậu kỳ từ OpenMontage ra đây.
 
-## Quy tac bat buoc
-- Xac nhan bang van ban truoc khi render (human checkpoint: idea/proposal, script, scene_plan, assets, publish).
-- Khong render video, khong goi API tra phi, khong nhap API key khi chua duoc phe duyet.
-- AGPL-3.0: OpenMontage giu nguyen la thu muc rieng, KHONG merge ma vao core\ cua Reup Studio.
-- OpenMontage ton token model: han che goi pipeline lon, uu tien test ngan.
+## Luồng sử dụng
+1. Trong Reup Studio (tab Translate / Job Center), xuất video `final_vi.mp4` và file phụ đề `translated.srt`.
+2. Sao chép 2 file này vào `F:\Orino\OpenMontage\exchange\input\`.
+3. Chạy `F:\Orino\run_montage.bat` — nó sẽ kích hoạt môi trường Python cô lập (`.venv`) của OpenMontage và mở `opencode` tại thư mục `F:\Orino\OpenMontage`.
+4. Agent đọc `OpenMontage\AGENTS.md` rồi `OpenMontage\AGENTS.local.md`, chọn pipeline phù hợp (ví dụ: `animation`, `cinematic`, `documentary-montage`), thực hiện theo quy tắc xác nhận từng bước.
+5. Sau khi xong, lấy file video kết quả từ `F:\Orino\OpenMontage\exchange\output\`.
 
-## Luu y
-- Reup Studio dung faster-whisper (core/transcribe.py L60) cho transcript va edge-tts (core/tts.py L118) / omnivoice cho TTS.
-- OpenMontage dung Piper (piper-tts 1.8.0) trong .venv rieng.
+## Ví dụ câu lệnh hướng dẫn agent (không chạy thử)
+> "Tôi có video và SRT tại OpenMontage\exchange\input\. Hãy dùng pipeline animation của OpenMontage để làm hậu kỳ (ghép hiệu ứng, phụ đề, nhạc nền), xuất kết quả sang OpenMontage\exchange\output\. Xác nhận với tôi trước khi render."
+
+## Quy tắc bắt buộc
+- **Xác nhận trước khi render:** Mọi bước tạo video phải chờ bạn đồng ý rõ ràng trước khi agent thực hiện render. Không bao giờ render thử hay render lén.
+- **Không gọi API trả phí:** Không nhập API key, không dùng dịch vụ cloud sinh video/hình/âm thanh tốn phí trừ khi bạn chủ động cung cấp key và đồng ý.
+- **Không render video trong giai đoạn cài đặt này.**
+
+## Cảnh báo giấy phép
+OpenMontage dùng giấy phép **GNU AGPLv3**. Nếu Reup Studio là sản phẩm thương mại hoặc đóng nguồn, hãy cân nhắc ảnh hưởng pháp lý trước khi gộp mã OpenMontage vào mã nguồn Reup Studio. Hiện tại OpenMontage được giữ như một thư mục độc lập, chỉ trao đổi qua `exchange\`.
+
+## Lưu ý chi phí token
+OpenMontage là hệ thống do AI agent điều khiển: mỗi lần agent phân tích, lập kịch bản, chọn provider sẽ tiêu tốn token của model LLM (khi dùng LLM qua API). Nếu bạn dùng các provider sinh video/hình/âm thanh qua API (FAL, Kling, ElevenLabs, Google…), sẽ có chi phí riêng của từng dịch vụ. Chế độ cài đặt hiện tại chỉ dùng công cụ cục bộ miễn phí (ffmpeg, remotion, Piper TTS) — **không tốn phí API** trừ khi bạn tự thêm key.
